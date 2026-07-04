@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Selin Eren — iOS Engineer. SwiftUI · Firebase · MapKit. Bilkent University 2027. Open to iOS roles in UK, EU, UAE." />
-  <meta name="theme-color" content="#060609" />
+  <meta name="description" content="Selin Eren — iOS Engineer. I build native iOS apps with SwiftUI. Bilkent University, Class of 2027. Open to iOS roles in the UK, EU, and UAE." />
+  <meta name="theme-color" content="#ffffff" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <title>Selin Eren — Software Developer</title>
+  <title>Selin Eren — iOS Engineer</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* ── RESET ───────────────────────────── */
+    /* ── Reset ─────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     img, svg { display: block; }
     a { color: inherit; text-decoration: none; }
@@ -22,474 +22,329 @@
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto !important; }
-      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; transition-delay: 0ms !important; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
     }
 
-    /* ── TOKENS ──────────────────────────── */
+    /* ── Tokens ────────────────────────────── */
     :root {
-      --bg:         #060609;
-      --surface:    rgba(255,255,255,0.03);
-      --surface-h:  rgba(255,255,255,0.055);
-      --border:     rgba(255,255,255,0.07);
-      --border-h:   rgba(255,255,255,0.15);
-      --accent:     #5B5EEB;
-      --accent-2:   #8B8EFF;
-      --accent-dim: rgba(91,94,235,0.12);
-      --mint:       #00C896;
-      --mint-dim:   rgba(0,200,150,0.09);
-      --gold:       #F0B429;
-      --gold-dim:   rgba(240,180,41,0.09);
-      --text:       #FFFFFF;
-      --text-2:     #72729A;
-      --text-3:     #35354A;
-      --mono:       #9898B8;
-      --nav-h:      60px;
+      --bg:      #ffffff;
+      --text:    #17171b;
+      --text-2:  #52525b;
+      --text-3:  #98989f;
+      --border:  #ececef;
+      --surface: #fafafa;
+      --accent:  #2557d6;
+      --green:   #16a34a;
+      --nav-h:   64px;
     }
 
-    /* ── BASE ────────────────────────────── */
+    /* ── Base ──────────────────────────────── */
     html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Manrope', system-ui, sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       font-size: 16px;
-      line-height: 1.6;
+      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
     }
     :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-    h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 36px; }
-    .rule { border: none; border-top: 1px solid var(--border); }
-    section { padding: 88px 0; }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 32px; }
+    section { padding: 112px 0; border-top: 1px solid var(--border); }
+    section:first-of-type { border-top: none; }
 
-    /* ── NAV ─────────────────────────────── */
+    strong { font-weight: 600; color: var(--text); }
+
+    /* ── Nav ───────────────────────────────── */
     #nav {
       position: fixed; top: 0; left: 0; right: 0;
       height: var(--nav-h); z-index: 999;
-      background: rgba(6,6,9,0.85);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
-      height: 100%; max-width: 1100px; margin: 0 auto; padding: 0 36px;
+      height: 100%; max-width: 960px; margin: 0 auto; padding: 0 32px;
     }
-    .nav-left { display: flex; align-items: center; gap: 18px; }
-    .nav-logo { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
-    .nav-status {
-      display: flex; align-items: center; gap: 6px;
-      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500;
-      color: var(--mint); letter-spacing: 1.5px; text-transform: uppercase;
-      padding: 4px 10px; border: 1px solid rgba(0,200,150,0.2); background: var(--mint-dim); border-radius: 99px;
-    }
-    .nav-status::before {
-      content: ''; width: 5px; height: 5px; background: var(--mint);
-      border-radius: 50%; flex-shrink: 0; animation: pulse 2.4s ease-in-out infinite;
-    }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+    .nav-logo { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+    .nav-right { display: flex; align-items: center; gap: 4px; }
     .nav-links { display: flex; align-items: center; }
     .nav-links a {
-      font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 500;
-      letter-spacing: 1px; text-transform: uppercase; color: var(--text-2);
-      padding: 8px 14px; border-radius: 7px; transition: color 0.15s;
+      font-size: 14px; font-weight: 500; color: var(--text-2);
+      padding: 8px 14px; border-radius: 6px; transition: color 0.15s;
     }
     .nav-links a:hover { color: var(--text); }
     .nav-cv {
-      font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 600;
-      letter-spacing: 1px; text-transform: uppercase;
-      color: var(--text); padding: 7px 16px;
-      border: 1px solid var(--border-h); border-radius: 7px;
-      transition: background 0.15s, border-color 0.15s;
+      font-size: 14px; font-weight: 500; color: var(--text);
+      padding: 7px 16px; margin-left: 10px;
+      border: 1px solid var(--border); border-radius: 8px;
+      transition: border-color 0.15s, background 0.15s;
     }
-    .nav-cv:hover { background: var(--surface-h); border-color: rgba(255,255,255,0.25); }
+    .nav-cv:hover { background: var(--surface); border-color: #dcdce1; }
 
-    /* mobile */
-    #nav-toggle { display: none; flex-direction: column; gap: 5px; padding: 6px; }
-    #nav-toggle span { display: block; width: 19px; height: 1.5px; background: var(--text-2); border-radius: 2px; transition: transform 0.2s, opacity 0.2s; }
+    /* mobile nav */
+    #nav-toggle { display: none; flex-direction: column; gap: 5px; padding: 8px; }
+    #nav-toggle span { display: block; width: 18px; height: 1.5px; background: var(--text); border-radius: 2px; transition: transform 0.2s, opacity 0.2s; }
     #nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     #nav-toggle.open span:nth-child(2) { opacity: 0; }
     #nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
     .mobile-menu {
       display: none; position: fixed; top: var(--nav-h); left: 0; right: 0;
-      background: rgba(6,6,9,0.98); backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border); padding: 12px 36px 24px; z-index: 998; flex-direction: column;
+      background: var(--bg); border-bottom: 1px solid var(--border);
+      padding: 8px 32px 20px; z-index: 998; flex-direction: column;
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu a {
-      font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500;
-      letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-2);
-      padding: 14px 0; border-bottom: 1px solid var(--border); transition: color 0.15s;
+      font-size: 15px; font-weight: 500; color: var(--text-2);
+      padding: 14px 0; border-bottom: 1px solid var(--border);
     }
     .mobile-menu a:last-child { border-bottom: none; }
-    .mobile-menu a:hover { color: var(--text); }
 
-    /* ── BUTTONS ─────────────────────────── */
+    /* ── Buttons ───────────────────────────── */
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
-      font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
-      letter-spacing: 1.2px; text-transform: uppercase;
-      padding: 13px 26px; border-radius: 9px; white-space: nowrap;
-      transition: all 0.16s ease;
+      font-size: 14px; font-weight: 500;
+      padding: 12px 24px; border-radius: 8px; white-space: nowrap;
+      transition: background 0.15s, border-color 0.15s;
     }
-    .btn-primary {
-      background: var(--accent); color: #fff;
-      box-shadow: 0 0 0 1px rgba(91,94,235,0.4), 0 6px 24px rgba(91,94,235,0.22);
-    }
-    .btn-primary:hover { background: #6568F2; transform: translateY(-1px); box-shadow: 0 0 0 1px rgba(91,94,235,0.5), 0 10px 32px rgba(91,94,235,0.3); }
-    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border-h); }
-    .btn-ghost:hover { background: var(--surface-h); border-color: rgba(255,255,255,0.25); transform: translateY(-1px); }
-    .btn-text {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
-      letter-spacing: 1px; text-transform: uppercase; color: var(--accent-2);
+    .btn-primary { background: var(--text); color: #fff; }
+    .btn-primary:hover { background: #2e2e35; }
+    .btn-ghost { color: var(--text); border: 1px solid var(--border); }
+    .btn-ghost:hover { background: var(--surface); border-color: #dcdce1; }
+    .link {
+      color: var(--accent); font-weight: 500;
       transition: opacity 0.15s;
     }
-    .btn-text:hover { opacity: 0.7; }
+    .link:hover { opacity: 0.75; }
 
-    /* ── HERO ────────────────────────────── */
-    #hero {
-      min-height: 100svh; display: flex; align-items: center;
-      padding-top: calc(var(--nav-h) + 48px); padding-bottom: 80px;
-      position: relative; overflow: hidden; max-width: 100vw;
-    }
-    #hero::after {
-      content: ''; position: absolute;
-      width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(91,94,235,0.07) 0%, transparent 65%);
-      top: -150px; right: -180px; pointer-events: none;
-    }
-    .hero-grid {
-      position: relative; z-index: 1;
-      display: grid; grid-template-columns: 1fr 360px;
-      gap: 64px; align-items: center;
-    }
-    .hero-eyebrow {
-      font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 500;
-      letter-spacing: 2px; text-transform: uppercase; color: var(--text-3);
-      margin-bottom: 22px;
-    }
-    h1.hero-name {
-      font-size: clamp(68px, 9.5vw, 116px); font-weight: 700;
-      letter-spacing: -4.5px; line-height: 0.9;
-      color: var(--text); margin-bottom: 32px;
-    }
-    .hero-tagline {
-      font-size: 17px; color: var(--text-2); line-height: 1.72;
-      max-width: 480px; margin-bottom: 40px; font-weight: 400;
-    }
-    .hero-tagline strong { color: var(--text); font-weight: 600; }
-    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
-
-    /* ── PHONE ───────────────────────────── */
-    .phone-wrap { display: flex; justify-content: center; align-items: center; position: relative; }
-    .phone-wrap::before {
-      content: ''; position: absolute; inset: -60px;
-      background: radial-gradient(ellipse at 50% 50%, rgba(91,94,235,0.10) 0%, transparent 68%);
-      pointer-events: none;
-    }
-    .phone {
-      position: relative; z-index: 1; width: 228px; aspect-ratio: 9/19.5;
-      border-radius: 46px; border: 1.5px solid rgba(255,255,255,0.11);
-      overflow: hidden;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 64px 100px rgba(0,0,0,0.85), 0 0 80px rgba(91,94,235,0.10);
-    }
-    .phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
-
-    /* ── SECTION LABELS ──────────────────── */
+    /* ── Section labels ────────────────────── */
     .sec-label {
-      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500;
-      color: var(--text-3); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 8px;
+      font-size: 13px; font-weight: 600; color: var(--text-3);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 12px;
     }
     .sec-heading {
-      font-size: clamp(30px, 3.8vw, 46px); font-weight: 700;
-      letter-spacing: -1.5px; color: var(--text); line-height: 1.05; margin-bottom: 48px;
+      font-size: 32px; font-weight: 700; letter-spacing: -0.02em;
+      line-height: 1.2; margin-bottom: 56px;
     }
 
-    /* ── ABOUT ───────────────────────────── */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+    /* ── Hero ──────────────────────────────── */
+    #hero {
+      padding: calc(var(--nav-h) + 128px) 0 128px;
+      border-top: none;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 300px;
+      gap: 96px; align-items: center;
+    }
+    .hero-status {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 500; color: var(--text-2);
+      padding: 6px 14px; border: 1px solid var(--border); border-radius: 999px;
+      margin-bottom: 32px;
+    }
+    .hero-status::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green); flex-shrink: 0;
+    }
+    h1.hero-name {
+      font-size: clamp(40px, 6vw, 60px); font-weight: 700;
+      letter-spacing: -0.03em; line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .hero-role {
+      font-size: clamp(20px, 3vw, 26px); font-weight: 500;
+      color: var(--text-3); letter-spacing: -0.01em;
+      margin-bottom: 32px;
+    }
+    .hero-tagline {
+      font-size: 17px; color: var(--text-2); line-height: 1.75;
+      max-width: 460px; margin-bottom: 44px;
+    }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .phone-wrap { display: flex; justify-content: center; }
+    .phone {
+      width: 260px; aspect-ratio: 9/19.5;
+      border-radius: 40px; border: 1px solid #e3e3e8;
+      overflow: hidden;
+      box-shadow: 0 32px 64px rgba(23,23,27,0.14), 0 4px 12px rgba(23,23,27,0.06);
+    }
+    .phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+    /* ── About ─────────────────────────────── */
+    .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 88px; align-items: start; }
     .about-text { font-size: 16px; color: var(--text-2); line-height: 1.8; }
-    .about-text strong { color: var(--text); font-weight: 600; }
+    .about-text + .about-text { margin-top: 20px; }
     .data-table { display: flex; flex-direction: column; }
     .data-row {
       display: flex; justify-content: space-between; align-items: baseline;
-      gap: 16px; padding: 15px 0; border-bottom: 1px solid var(--border);
+      gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--border);
     }
     .data-row:first-child { border-top: 1px solid var(--border); }
-    .data-key {
-      font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 500;
-      color: var(--text-3); letter-spacing: 1.5px; text-transform: uppercase; flex-shrink: 0;
+    .data-key { font-size: 13px; font-weight: 500; color: var(--text-3); flex-shrink: 0; }
+    .data-val { font-size: 14px; font-weight: 500; text-align: right; }
+
+    /* ── Work ──────────────────────────────── */
+    .work-meta {
+      font-size: 14px; color: var(--text-3); font-weight: 500;
+      margin: -44px 0 40px;
     }
-    .data-val { font-size: 14px; font-weight: 600; color: var(--text); text-align: right; }
-    .data-val.mint { color: var(--mint); }
-    .data-val.dim  { color: var(--accent-2); }
-
-    /* ── WORK ────────────────────────────── */
-    .work-project { padding: 52px 0; border-top: 1px solid var(--border); }
-    .work-project:last-child { border-bottom: 1px solid var(--border); }
-
-    .work-top { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start; margin-bottom: 20px; }
-    .work-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-3); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; }
-    .work-name { font-size: clamp(28px, 4vw, 42px); font-weight: 700; letter-spacing: -1.2px; color: var(--text); margin-bottom: 8px; }
-    .work-stack { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-3); letter-spacing: 0.5px; margin-bottom: 18px; }
-    .work-desc { font-size: 15px; color: var(--text-2); line-height: 1.72; max-width: 600px; }
-    .work-year { font-family: 'Space Grotesk', sans-serif; font-size: 52px; font-weight: 700; color: var(--text-3); letter-spacing: -3px; line-height: 1; flex-shrink: 0; }
-
-    /* arch */
-    .arch-block {
-      margin: 28px 0;
-      background: rgba(0,0,0,0.35); border: 1px solid var(--border);
-      border-radius: 10px; padding: 18px 22px;
-    }
-    .arch-label { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--text-3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
-    .arch-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
-    .anode {
-      font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500;
-      padding: 5px 11px; border-radius: 6px; white-space: nowrap;
-    }
-    .an-v  { color: var(--accent-2); background: var(--accent-dim); border: 1px solid rgba(91,94,235,0.22); }
-    .an-g  { color: var(--mint);     background: var(--mint-dim);   border: 1px solid rgba(0,200,150,0.18); }
-    .an-n  { color: var(--mono);     background: var(--surface);    border: 1px solid var(--border); }
-    .an-o  { color: #FFB74D;         background: rgba(255,152,0,0.08); border: 1px solid rgba(255,152,0,0.18); }
-    .aarrow { font-size: 13px; color: var(--text-3); }
-
-    /* features */
-    .work-features { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 24px; }
+    .work-desc { font-size: 16px; color: var(--text-2); line-height: 1.8; max-width: 640px; margin-bottom: 20px; }
+    .work-arch { font-size: 15px; color: var(--text-2); line-height: 1.8; max-width: 640px; margin-bottom: 36px; }
+    .work-features { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; max-width: 680px; }
     .wf-chip {
-      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500;
-      letter-spacing: 0.3px; color: var(--mono);
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 5px; padding: 4px 11px; white-space: nowrap;
+      font-size: 13px; font-weight: 500; color: var(--text-2);
+      border: 1px solid var(--border); border-radius: 999px;
+      padding: 5px 14px; white-space: nowrap;
     }
 
-    /* screenshots */
-    .ss-strip { display: flex; gap: 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; margin-top: 32px; }
+    .ss-strip {
+      display: flex; gap: 16px; overflow-x: auto;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none;
+      margin-top: 56px; padding: 4px;
+    }
     .ss-strip::-webkit-scrollbar { display: none; }
     .ss-frame {
-      flex-shrink: 0; width: 158px; border-radius: 28px;
-      border: 1.5px solid rgba(255,255,255,0.09); overflow: hidden;
-      box-shadow: 0 20px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.02);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      flex-shrink: 0; width: 168px; border-radius: 26px;
+      border: 1px solid #e3e3e8; overflow: hidden;
+      box-shadow: 0 12px 32px rgba(23,23,27,0.10);
     }
-    .ss-frame:hover { transform: translateY(-5px); box-shadow: 0 32px 60px rgba(0,0,0,0.7), 0 0 36px rgba(91,94,235,0.14); }
-    .ss-frame img { width: 100%; display: block; }
+    .ss-frame img { width: 100%; }
 
-    /* secondary projects */
-    .work-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); margin-top: 16px; }
-    .ws-item { background: var(--bg); padding: 30px; transition: background 0.15s; }
-    .ws-item:hover { background: var(--surface); }
-    .ws-idx { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--text-3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
-    .ws-name { font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 700; color: var(--text); letter-spacing: 0px; margin-bottom: 8px; }
-    .ws-desc { font-size: 13px; color: var(--text-2); line-height: 1.6; margin-bottom: 18px; }
+    .work-other { margin-top: 88px; }
+    .work-other h3 { font-size: 15px; font-weight: 600; color: var(--text-3); margin-bottom: 8px; }
+    .wo-row {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 24px;
+      padding: 20px 0; border-bottom: 1px solid var(--border);
+    }
+    .wo-row:first-of-type { border-top: 1px solid var(--border); }
+    .wo-name { font-size: 16px; font-weight: 600; margin-bottom: 2px; }
+    .wo-desc { font-size: 14px; color: var(--text-2); }
+    .wo-link { flex-shrink: 0; font-size: 14px; }
 
-    /* ── EXPERIENCE ──────────────────────── */
-    .exp-item { padding: 40px 0; border-bottom: 1px solid var(--border); }
-    .exp-item:first-child { border-top: 1px solid var(--border); }
+    /* ── Experience ────────────────────────── */
+    .exp-item { padding: 44px 0; border-bottom: 1px solid var(--border); }
+    .exp-item:first-of-type { border-top: 1px solid var(--border); }
     .exp-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; margin-bottom: 20px; }
-    .exp-role { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--text); letter-spacing: -0.2px; margin-bottom: 3px; }
-    .exp-where { font-size: 14px; color: var(--text-2); font-weight: 500; }
-    .exp-where a { color: var(--accent-2); }
+    .exp-role { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 2px; }
+    .exp-where { font-size: 15px; color: var(--text-2); }
+    .exp-where a { color: var(--accent); }
     .exp-where a:hover { text-decoration: underline; }
-    .exp-date { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--text-3); letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; padding-top: 4px; }
-    .exp-bullets { display: flex; flex-direction: column; gap: 12px; margin-bottom: 22px; }
-    .exp-bullets li { display: block; position: relative; padding-left: 14px; font-size: 14.5px; color: var(--text-2); line-height: 1.68; }
-    .exp-bullets li::before { content: ''; position: absolute; left: 0; top: 9px; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
-    .exp-bullets strong { color: var(--text); font-weight: 600; }
-    .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .etag { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-3); background: var(--surface); border: 1px solid var(--border); border-radius: 5px; padding: 4px 10px; white-space: nowrap; }
+    .exp-date { font-size: 14px; color: var(--text-3); white-space: nowrap; flex-shrink: 0; padding-top: 3px; }
+    .exp-bullets { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+    .exp-bullets li { position: relative; padding-left: 18px; font-size: 15px; color: var(--text-2); line-height: 1.7; }
+    .exp-bullets li::before { content: ''; position: absolute; left: 2px; top: 11px; width: 5px; height: 5px; border-radius: 50%; background: #d4d4da; }
+    .exp-tags { font-size: 13px; color: var(--text-3); font-weight: 500; }
 
-    /* ── STACK ───────────────────────────── */
-    .stack-table { display: flex; flex-direction: column; }
-    .stack-row { display: flex; align-items: baseline; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+    /* ── Stack ─────────────────────────────── */
+    .stack-table { display: flex; flex-direction: column; max-width: 720px; }
+    .stack-row {
+      display: grid; grid-template-columns: 160px 1fr; gap: 32px;
+      padding: 18px 0; border-bottom: 1px solid var(--border); align-items: baseline;
+    }
     .stack-row:first-child { border-top: 1px solid var(--border); }
-    .stack-cat { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 500; color: var(--text-3); letter-spacing: 1.5px; text-transform: uppercase; width: 110px; flex-shrink: 0; }
-    .stack-items { display: flex; flex-wrap: wrap; gap: 7px; }
-    .sitem { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--mono); padding: 5px 12px; border: 1px solid var(--border); border-radius: 6px; transition: color 0.15s, border-color 0.15s; cursor: default; }
-    .sitem:hover { color: var(--text); border-color: var(--border-h); }
-    .sitem.core { color: var(--accent-2); border-color: rgba(91,94,235,0.28); background: var(--accent-dim); font-weight: 600; }
+    .stack-cat { font-size: 13px; font-weight: 500; color: var(--text-3); }
+    .stack-items { font-size: 15px; color: var(--text-2); line-height: 1.7; }
 
-    /* ── MORE (education + beyond) ───────── */
-    .more-table { display: flex; flex-direction: column; }
-    .more-row { display: grid; grid-template-columns: 160px 1fr; gap: 36px; padding: 20px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+    /* ── More ──────────────────────────────── */
+    .more-table { display: flex; flex-direction: column; max-width: 780px; }
+    .more-row {
+      display: grid; grid-template-columns: 160px 1fr; gap: 32px;
+      padding: 22px 0; border-bottom: 1px solid var(--border); align-items: baseline;
+    }
     .more-row:first-child { border-top: 1px solid var(--border); }
-    .more-key { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; font-weight: 500; color: var(--text-3); letter-spacing: 1.5px; text-transform: uppercase; padding-top: 2px; }
-    .more-val { font-size: 14px; color: var(--text-2); line-height: 1.7; }
-    .more-val strong { color: var(--text); font-weight: 600; }
-    .more-val .award-inline {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
-      color: var(--gold); background: var(--gold-dim); border: 1px solid rgba(240,180,41,0.2);
-      border-radius: 5px; padding: 3px 9px; margin-left: 10px; vertical-align: middle;
-    }
+    .more-key { font-size: 13px; font-weight: 500; color: var(--text-3); }
+    .more-val { font-size: 15px; color: var(--text-2); line-height: 1.7; }
 
-    /* ── CONTACT ─────────────────────────── */
-    #contact { padding: 88px 0 72px; }
+    /* ── Contact ───────────────────────────── */
     .contact-heading {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(38px, 6vw, 76px); font-weight: 700;
-      letter-spacing: -3px; line-height: 0.95;
-      color: var(--text); margin-bottom: 36px;
+      font-size: clamp(32px, 5vw, 48px); font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 28px;
     }
-    .contact-heading span { color: var(--accent-2); }
+    .contact-sub { font-size: 16px; color: var(--text-2); max-width: 520px; line-height: 1.8; margin-bottom: 40px; }
     .contact-email {
       display: inline-flex; align-items: center; gap: 10px;
-      font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 500;
-      color: var(--accent-2); margin-bottom: 40px; transition: opacity 0.15s;
+      font-size: 17px; font-weight: 500; color: var(--accent);
+      margin-bottom: 56px; transition: opacity 0.15s;
     }
-    .contact-email:hover { opacity: 0.7; }
-    .contact-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; padding-top: 32px; border-top: 1px solid var(--border); }
-    .social-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .contact-email:hover { opacity: 0.75; }
+    .contact-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 20px; padding-top: 36px; border-top: 1px solid var(--border);
+    }
+    .social-row { display: flex; gap: 10px; flex-wrap: wrap; }
     .social-btn {
-      display: inline-flex; align-items: center; gap: 7px;
-      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 600;
-      letter-spacing: 1px; text-transform: uppercase; color: var(--text-2);
-      padding: 9px 16px; border: 1px solid var(--border); border-radius: 7px;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 14px; font-weight: 500; color: var(--text-2);
+      padding: 9px 18px; border: 1px solid var(--border); border-radius: 8px;
       transition: color 0.15s, border-color 0.15s, background 0.15s;
     }
-    .social-btn:hover { color: var(--text); border-color: var(--border-h); background: var(--surface); }
-    .reloc { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-3); letter-spacing: 1.5px; text-transform: uppercase; }
+    .social-btn:hover { color: var(--text); background: var(--surface); border-color: #dcdce1; }
+    .reloc { font-size: 13px; color: var(--text-3); font-weight: 500; }
 
-    /* ── FOOTER ──────────────────────────── */
-    footer { border-top: 1px solid var(--border); padding: 22px 0; }
-    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
-    .f-copy, .f-note { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--text-3); }
+    /* ── Footer ────────────────────────────── */
+    footer { border-top: 1px solid var(--border); padding: 28px 0; }
+    .f-copy { font-size: 13px; color: var(--text-3); }
 
-    /* ── REVEAL ──────────────────────────── */
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1); }
-    .reveal.visible { opacity: 1; transform: none; }
-    .rd1 { transition-delay: 0.08s; }
-    .rd2 { transition-delay: 0.16s; }
-
-    /* ── RESPONSIVE ──────────────────────── */
-    @media (max-width: 960px) {
-      .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .work-top { grid-template-columns: 1fr; }
-      .work-year { display: none; }
-      .work-secondary { grid-template-columns: 1fr; }
-      .more-row { grid-template-columns: 110px 1fr; gap: 20px; }
+    /* ── Responsive ────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 72px; }
+      .phone-wrap { justify-content: flex-start; }
+      .about-grid { grid-template-columns: 1fr; gap: 56px; }
     }
 
     @media (max-width: 640px) {
-      :root { --nav-h: 50px; }
+      :root { --nav-h: 56px; }
+      .container, .nav-inner { padding-left: 20px; padding-right: 20px; }
+      section { padding: 64px 0; }
+      #hero { padding: calc(var(--nav-h) + 64px) 0 72px; }
 
-      /* ── Global ── */
-      body { font-size: 15px; }
-      .container { padding: 0 16px; }
-      section { padding: 36px 0; }
-      .rule { display: none; }          /* remove hard dividers — sections flow together */
-
-      /* ── Nav ── */
-      .nav-links, .nav-cv, .nav-status { display: none; }
+      .nav-links, .nav-cv { display: none; }
       #nav-toggle { display: flex; }
+      .mobile-menu { padding-left: 20px; padding-right: 20px; }
 
-      /* ── Hero ── */
-      .hero-grid { display: block; }
+      h1.hero-name { font-size: 38px; }
+      .hero-role { font-size: 19px; margin-bottom: 24px; }
+      .hero-tagline { font-size: 15px; margin-bottom: 32px; }
+      .hero-status { font-size: 12px; padding: 5px 12px; margin-bottom: 24px; }
+      .hero-ctas .btn { flex: 1; justify-content: center; }
       .phone-wrap { display: none; }
-      #hero {
-        min-height: auto;
-        padding-top: calc(var(--nav-h) + 32px);
-        padding-bottom: 40px;
-      }
-      h1.hero-name {
-        font-size: 46px;
-        letter-spacing: -2px;
-        line-height: 0.93;
-        margin-bottom: 18px;
-      }
-      .hero-eyebrow { font-size: 9px; letter-spacing: 1.5px; margin-bottom: 14px; }
-      .hero-tagline { font-size: 14px; line-height: 1.65; margin-bottom: 24px; }
-      .hero-ctas { flex-direction: column; gap: 8px; }
-      .btn { width: 100%; justify-content: center; font-size: 10px; padding: 12px 16px; }
 
-      /* ── Section labels & headings ── */
-      .sec-label { margin-bottom: 4px; }
-      .sec-heading { font-size: 22px; letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 20px; }
+      .sec-heading { font-size: 26px; margin-bottom: 36px; }
+      .work-meta { margin: -28px 0 28px; }
+      .ss-strip { margin-top: 36px; gap: 12px; }
+      .ss-frame { width: 132px; border-radius: 20px; }
+      .work-other { margin-top: 56px; }
 
-      /* ── About ── */
-      .about-grid { gap: 28px; }
-      .about-text { font-size: 14px; line-height: 1.7; }
-      .data-row { padding: 11px 0; }
-      .data-key { font-size: 9px; }
-      .data-val { font-size: 13px; }
+      .exp-item { padding: 32px 0; }
+      .exp-head { flex-direction: column; gap: 4px; margin-bottom: 16px; }
+      .exp-date { padding-top: 0; }
 
-      /* ── Work ── */
-      .work-project { padding: 28px 0; }
-      .work-label { font-size: 9px; margin-bottom: 6px; }
-      .work-name { font-size: 22px; letter-spacing: -0.5px; margin-bottom: 6px; }
-      .work-stack { font-size: 9.5px; margin-bottom: 12px; }
-      .work-desc { font-size: 13.5px; line-height: 1.65; }
-      .arch-block { padding: 14px 16px; margin: 18px 0; }
-      .arch-label { font-size: 9px; margin-bottom: 10px; }
-      .arch-flow { gap: 4px; }
-      .anode { font-size: 9.5px; padding: 4px 8px; }
-      .aarrow { font-size: 11px; }
-      .work-features { gap: 5px; margin-bottom: 16px; }
-      .wf-chip { font-size: 9px; padding: 3px 9px; }
-      .ss-strip { gap: 8px; margin-top: 20px; }
-      .ss-frame { width: 110px; border-radius: 18px; }
-      .work-secondary { margin-top: 12px; }
-      .ws-item { padding: 20px; }
-      .ws-idx { font-size: 9px; margin-bottom: 6px; }
-      .ws-name { font-size: 16px; margin-bottom: 6px; }
-      .ws-desc { font-size: 12.5px; margin-bottom: 12px; }
+      .stack-row, .more-row { grid-template-columns: 1fr; gap: 4px; padding: 16px 0; }
 
-      /* ── Experience ── */
-      .exp-item { padding: 24px 0; }
-      .exp-head { flex-direction: column; gap: 3px; margin-bottom: 14px; }
-      .exp-role { font-size: 16px; }
-      .exp-where { font-size: 12.5px; }
-      .exp-date { font-size: 9.5px; }
-      .exp-bullets { gap: 9px; margin-bottom: 14px; }
-      .exp-bullets li { display: block; position: relative; padding-left: 13px; font-size: 13px; line-height: 1.62; }
-      .exp-bullets li::before { position: absolute; left: 0; top: 7px; margin-top: 0; }
-      .exp-tags { gap: 5px; }
-      .etag { font-size: 9px; padding: 3px 8px; }
-
-      /* ── Stack ── */
-      .stack-row { flex-direction: column; gap: 8px; padding: 14px 0; }
-      .stack-cat { width: auto; font-size: 9px; }
-      .stack-items { gap: 5px; }
-      .sitem { font-size: 10.5px; padding: 4px 10px; }
-
-      /* ── More ── */
-      .more-row { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
-      .more-key { padding-top: 0; font-size: 9px; }
-      .more-val { font-size: 13px; line-height: 1.6; }
-      .award-inline { font-size: 9px; padding: 2px 7px; }
-
-      /* ── Contact ── */
-      #contact { padding: 36px 0 32px; }
-      .contact-heading { font-size: 36px; letter-spacing: -1.5px; margin-bottom: 20px; }
-      .contact-email { font-size: 12.5px; margin-bottom: 24px; }
-      .contact-bottom { flex-direction: column; align-items: flex-start; gap: 16px; padding-top: 20px; }
-      .social-row { gap: 6px; }
-      .social-btn { font-size: 9.5px; padding: 8px 12px; }
-      .reloc { font-size: 9px; }
-
-      /* ── Footer ── */
-      footer { padding: 16px 0; }
-      .f-copy, .f-note { font-size: 9.5px; }
+      .contact-bottom { flex-direction: column; align-items: flex-start; gap: 20px; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="nav" role="navigation" aria-label="Main navigation">
+<!-- Nav -->
+<nav id="nav" aria-label="Main navigation">
   <div class="nav-inner">
-    <div class="nav-left">
-      <a href="#hero" class="nav-logo">Selin Eren</a>
-      <div class="nav-status" aria-label="Open to part-time now, full-time 2027">Open to Work</div>
+    <a href="#hero" class="nav-logo">Selin Eren</a>
+    <div class="nav-right">
+      <ul class="nav-links" role="list">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="Selin_Eren_CV.pdf" class="nav-cv" target="_blank" rel="noopener">Download CV</a>
+      <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
     </div>
-    <ul class="nav-links" role="list">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a href="Selin_Eren_CV.pdf" class="nav-cv" target="_blank" rel="noopener">CV ↗</a>
-    <button id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
-      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
-    </button>
   </div>
 </nav>
 
@@ -497,337 +352,250 @@
   <a href="#work" onclick="closeMobile()">Work</a>
   <a href="#experience" onclick="closeMobile()">Experience</a>
   <a href="#contact" onclick="closeMobile()">Contact</a>
-  <a href="Selin_Eren_CV.pdf" target="_blank" rel="noopener">Download CV ↗</a>
+  <a href="Selin_Eren_CV.pdf" target="_blank" rel="noopener">Download CV</a>
 </nav>
 
-<!-- ── HERO ─────────────────────────────── -->
+<!-- Hero -->
 <section id="hero" aria-label="Introduction">
   <div class="container">
     <div class="hero-grid">
       <div>
-        <p class="hero-eyebrow">iOS Engineer · Bilkent University, 2027</p>
-        <h1 class="hero-name">Selin<br>Eren.</h1>
+        <p class="hero-status">Open to part-time now · full-time summer 2027</p>
+        <h1 class="hero-name">Selin Eren</h1>
+        <p class="hero-role">iOS Engineer</p>
         <p class="hero-tagline">
-          Built and shipping <strong>Wandova</strong> to the App Store — a SwiftUI travel tracker with real-time Firestore sync,
-          offline-first SwiftData persistence, and interactive MapKit world maps.
-          Open to <strong>part-time software development roles now</strong> alongside my studies, and targeting full-time <strong>iOS engineering</strong> in <strong>UK · EU · UAE</strong> from 2027.
+          I build native iOS apps with SwiftUI. Currently shipping <strong>Wandova</strong> to the
+          App Store — a travel tracker with real-time cloud sync, offline-first persistence,
+          and an interactive MapKit world map. Final-year student at Bilkent University.
         </p>
         <div class="hero-ctas">
-          <a href="#work" class="btn btn-primary">View Work</a>
-          <a href="Selin_Eren_CV.pdf" class="btn btn-ghost" target="_blank" rel="noopener">Download CV ↗</a>
+          <a href="#work" class="btn btn-primary">View work</a>
+          <a href="Selin_Eren_CV.pdf" class="btn btn-ghost" target="_blank" rel="noopener">Download CV</a>
         </div>
       </div>
       <div class="phone-wrap">
         <div class="phone">
-          <img src="ss-hero.png" alt="Wandova iOS app — interactive MapKit world map with visited countries in red and flag annotations, wishlist in purple" />
+          <img src="ss-hero.png" alt="Wandova iOS app — interactive MapKit world map with visited countries and flag annotations" />
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="rule" />
-
-<!-- ── ABOUT ─────────────────────────────── -->
+<!-- About -->
 <section id="about" aria-labelledby="about-h">
   <div class="container">
     <div class="about-grid">
-      <div class="reveal">
-        <p class="sec-label">About</p>
-        <p class="about-text" style="margin-bottom:16px;">
-          Final-year <strong>Information Systems & Technologies</strong> student at Bilkent University, graduating 2027.
-          I care about architecture, performance, and the kind of UI detail that makes an app feel genuinely native.
+      <div>
+        <p class="sec-label" id="about-h">About</p>
+        <p class="about-text">
+          I'm a final-year <strong>Information Systems &amp; Technologies</strong> student at Bilkent
+          University, graduating in June 2027. I care about architecture, performance, and the kind of
+          UI detail that makes an app feel genuinely native.
         </p>
-        <p class="about-text" style="margin-bottom:16px;">
-          I've shipped production iOS in SwiftUI, built CRM software in C#, volunteered with special needs children in Pakistan,
-          worked on a farm in Denmark, and run my own campus business. I'm drawn to hard problems in fast-moving teams —
-          the more cross-cultural, the better.
+        <p class="about-text">
+          I've shipped production iOS in SwiftUI, built CRM software in C#, volunteered with special
+          needs children in Pakistan, worked on a farm in Denmark, and run my own campus business.
+          I'm drawn to hard problems in fast-moving teams — the more cross-cultural, the better.
         </p>
       </div>
-      <div class="data-table reveal rd1" aria-label="Key information">
-        <div class="data-row"><span class="data-key">Part-time</span><span class="data-val mint">Software Dev · Now</span></div>
-        <div class="data-row"><span class="data-key">Full-time</span><span class="data-val mint">iOS Engineer · 2027</span></div>
+      <div class="data-table" aria-label="Key information">
         <div class="data-row"><span class="data-key">Focus</span><span class="data-val">iOS Engineering</span></div>
-        <div class="data-row"><span class="data-key">University</span><span class="data-val">Bilkent University</span></div>
-        <div class="data-row"><span class="data-key">Graduating</span><span class="data-val">2027</span></div>
-        <div class="data-row"><span class="data-key">Location</span><span class="data-val">Istanbul, TR</span></div>
-        <div class="data-row"><span class="data-key">Open to</span><span class="data-val dim">UK · EU · UAE</span></div>
+        <div class="data-row"><span class="data-key">Availability</span><span class="data-val">Part-time now · full-time summer 2027</span></div>
+        <div class="data-row"><span class="data-key">University</span><span class="data-val">Bilkent University, 2027</span></div>
+        <div class="data-row"><span class="data-key">Location</span><span class="data-val">Istanbul, Türkiye</span></div>
+        <div class="data-row"><span class="data-key">Open to</span><span class="data-val">UK · EU · UAE</span></div>
         <div class="data-row"><span class="data-key">English</span><span class="data-val">IELTS Academic 7.0</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="rule" />
-
-<!-- ── WORK ──────────────────────────────── -->
+<!-- Work -->
 <section id="work" aria-labelledby="work-h">
   <div class="container">
-    <p class="sec-label">Work</p>
+    <p class="sec-label">Selected work</p>
     <h2 class="sec-heading" id="work-h">Wandova</h2>
+    <p class="work-meta">iOS app · 2026 · Shipping to the App Store</p>
 
-    <article class="work-project reveal" aria-label="Wandova iOS project">
-      <div class="work-top">
+    <p class="work-desc">
+      A production travel tracker built during my internship at Orion Innovation, now launching on
+      the App Store and evolving with user feedback. It tracks visited countries and wishlists on an
+      interactive MapKit world map, syncs in real time across devices via Firestore, and works fully
+      offline with SwiftData persistence.
+    </p>
+    <p class="work-arch">
+      Under the hood it follows MVVM with a repository layer: SwiftUI views drive an observable app
+      state, which reads and writes through a repository protocol backed by SwiftData locally and
+      Firestore in the cloud. A sync service handles bi-directional updates with an offline queue,
+      retry logic, and per-record conflict resolution.
+    </p>
+
+    <div class="work-features" role="list" aria-label="Key features">
+      <span class="wf-chip" role="listitem">MapKit + GeoJSON polygons</span>
+      <span class="wf-chip" role="listitem">Real-time Firestore sync</span>
+      <span class="wf-chip" role="listitem">Offline-first SwiftData</span>
+      <span class="wf-chip" role="listitem">Sign in with Apple &amp; Google</span>
+      <span class="wf-chip" role="listitem">Achievement engine</span>
+      <span class="wf-chip" role="listitem">Stats &amp; continent progress</span>
+      <span class="wf-chip" role="listitem">Travel comparison</span>
+      <span class="wf-chip" role="listitem">Photo memories</span>
+    </div>
+
+    <a href="https://github.com/selineren/wandova" class="link" target="_blank" rel="noopener">View on GitHub →</a>
+
+    <div class="ss-strip" role="list" aria-label="Wandova screenshots">
+      <div class="ss-frame" role="listitem"><img src="ss-map-globe.png" alt="Map — globe view with visited countries and wishlist" loading="lazy" /></div>
+      <div class="ss-frame" role="listitem"><img src="ss-hero.png" alt="Map — zoomed to Europe with flag annotations on visited countries" loading="lazy" /></div>
+      <div class="ss-frame" role="listitem"><img src="ss-country-sheet.png" alt="Country action sheet — mark as visited or add to wishlist" loading="lazy" /></div>
+      <div class="ss-frame" role="listitem"><img src="ss-stats.png" alt="Stats dashboard with continent progress" loading="lazy" /></div>
+      <div class="ss-frame" role="listitem"><img src="ss-achievement.png" alt="Achievement unlocked — Explorer badge" loading="lazy" /></div>
+      <div class="ss-frame" role="listitem"><img src="ss-badges.png" alt="Badges screen with detail sheet" loading="lazy" /></div>
+      <div class="ss-frame" role="listitem"><img src="ss-auth.png" alt="Sign-in screen with Google and Apple options" loading="lazy" /></div>
+    </div>
+
+    <div class="work-other">
+      <h3>Other projects</h3>
+      <div class="wo-row">
         <div>
-          <div class="work-label">iOS App · 2026 · Shipping to App Store</div>
-          <div class="work-stack">SwiftUI · SwiftData · Firebase Auth · Firestore · MapKit · Combine</div>
-          <p class="work-desc">
-            A production iOS travel tracker built during my internship at Orion Innovation — currently launching on the App Store
-            and continuing to evolve based on user feedback.
-            Track visited countries and wishlists on an interactive MapKit world map, with real-time Firestore sync across devices,
-            offline persistence via SwiftData, photo memories, achievement badges, and travel comparison.
-          </p>
+          <p class="wo-name">Sudoku Game</p>
+          <p class="wo-desc">Classic Sudoku built in Java — grid logic, cell validation, and puzzle generation.</p>
         </div>
-        <div class="work-year" aria-hidden="true">2026</div>
+        <a href="https://github.com/selineren/SudokuGame" class="link wo-link" target="_blank" rel="noopener">GitHub →</a>
       </div>
-
-      <div class="arch-block" aria-label="Wandova architecture diagram">
-        <div class="arch-label">Architecture</div>
-        <div class="arch-flow">
-          <span class="anode an-v">SwiftUI Views</span>
-          <span class="aarrow">→</span>
-          <span class="anode an-g">AppState (ViewModel)</span>
-          <span class="aarrow">→</span>
-          <span class="anode an-n">VisitRepository protocol</span>
-          <span class="aarrow">→</span>
-          <span class="anode an-n">SwiftData</span>
-          <span class="aarrow">+</span>
-          <span class="anode an-o">Firestore</span>
-          <span class="aarrow">↔</span>
-          <span class="anode an-g">SyncService · retry(3) · offline queue</span>
+      <div class="wo-row">
+        <div>
+          <p class="wo-name">More on GitHub</p>
+          <p class="wo-desc">Full collection of projects, coursework, and experiments.</p>
         </div>
-      </div>
-
-      <div class="work-features" role="list" aria-label="Key features">
-        <span class="wf-chip" role="listitem">MapKit + GeoJSON polygons</span>
-        <span class="wf-chip" role="listitem">Bi-directional Firestore sync</span>
-        <span class="wf-chip" role="listitem">Offline-first SwiftData</span>
-        <span class="wf-chip" role="listitem">Sign in with Apple &amp; Google</span>
-        <span class="wf-chip" role="listitem">Achievement engine</span>
-        <span class="wf-chip" role="listitem">Stats &amp; continent progress</span>
-        <span class="wf-chip" role="listitem">Travel comparison</span>
-        <span class="wf-chip" role="listitem">Map snapshot export</span>
-        <span class="wf-chip" role="listitem">Photo memories grid</span>
-      </div>
-
-      <a href="https://github.com/selineren/wandova" class="btn-text" target="_blank" rel="noopener">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-        View on GitHub ↗
-      </a>
-
-      <div class="ss-strip" role="list" aria-label="Wandova screenshots">
-        <div class="ss-frame" role="listitem"><img src="ss-map-globe.png" alt="Map — globe view, Europe/Africa, red visited · purple wishlist" /></div>
-        <div class="ss-frame" role="listitem"><img src="ss-hero.png"      alt="Map — zoomed to Europe with flag pin annotations on visited countries" /></div>
-        <div class="ss-frame" role="listitem"><img src="ss-country-sheet.png" alt="Country action sheet — Italy, Mark as Visited / Add to Wishlist" /></div>
-        <div class="ss-frame" role="listitem"><img src="ss-stats.png"     alt="Stats dashboard — summary, continent progress bars" /></div>
-        <div class="ss-frame" role="listitem"><img src="ss-achievement.png" alt="Achievement unlocked — Explorer badge" /></div>
-        <div class="ss-frame" role="listitem"><img src="ss-badges.png"    alt="Badges screen with detail sheet" /></div>
-        <div class="ss-frame" role="listitem"><img src="ss-auth.png"      alt="Auth screen — Google and Apple Sign-In" /></div>
-      </div>
-    </article>
-
-    <div class="work-secondary reveal" aria-label="Other projects">
-      <div class="ws-item">
-        <div class="ws-idx">Java</div>
-        <div class="ws-name">Sudoku Game</div>
-        <p class="ws-desc">Classic Sudoku built purely in Java — grid logic, cell validation, and puzzle generation.</p>
-        <a href="https://github.com/selineren/SudokuGame" class="btn-text" target="_blank" rel="noopener">
-          GitHub ↗
-        </a>
-      </div>
-      <div class="ws-item">
-        <div class="ws-idx">More</div>
-        <div class="ws-name">github.com/selineren</div>
-        <p class="ws-desc">Full collection of projects, coursework, and experiments.</p>
-        <a href="https://github.com/selineren" class="btn-text" target="_blank" rel="noopener">
-          Browse ↗
-        </a>
+        <a href="https://github.com/selineren" class="link wo-link" target="_blank" rel="noopener">Browse →</a>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="rule" />
-
-<!-- ── EXPERIENCE ────────────────────────── -->
+<!-- Experience -->
 <section id="experience" aria-labelledby="exp-h">
   <div class="container">
     <p class="sec-label">Experience</p>
     <h2 class="sec-heading" id="exp-h">Where I've worked</h2>
 
-    <div>
-      <!-- Orion -->
-      <div class="exp-item reveal">
-        <div class="exp-head">
-          <div>
-            <div class="exp-role">iOS Intern</div>
-            <div class="exp-where"><a href="https://orioninc.com" target="_blank" rel="noopener">Orion Innovation</a> · Istanbul, Türkiye</div>
-          </div>
-          <div class="exp-date">Feb – May 2026</div>
+    <div class="exp-item">
+      <div class="exp-head">
+        <div>
+          <p class="exp-role">iOS Intern</p>
+          <p class="exp-where"><a href="https://orioninc.com" target="_blank" rel="noopener">Orion Innovation</a> · Istanbul, Türkiye</p>
         </div>
-        <ul class="exp-bullets">
-          <li>Built <strong>Wandova</strong> end-to-end in SwiftUI — production iOS travel tracker following MVVM + Repository Pattern, from persistence to UI. Currently shipping to the App Store and iterating on user feedback.</li>
-          <li>Designed bi-directional cloud sync between SwiftData and Firestore, with offline queuing, retry logic, and per-record conflict resolution.</li>
-          <li>Integrated Sign in with Apple and Google Sign-In; rendered an interactive world map in MapKit from bundled GeoJSON country polygons.</li>
-          <li>Shipped stats dashboard, achievement engine, photo memories grid, travel comparison, and map snapshot export.</li>
-        </ul>
-        <div class="exp-tags">
-          <span class="etag">SwiftUI</span><span class="etag">SwiftData</span><span class="etag">Firebase</span>
-          <span class="etag">MapKit</span><span class="etag">Combine</span><span class="etag">Apple Sign-In</span><span class="etag">iOS 17.6+</span>
-        </div>
+        <p class="exp-date">Feb – May 2026</p>
       </div>
+      <ul class="exp-bullets">
+        <li>Built <strong>Wandova</strong> end-to-end in SwiftUI — a production travel tracker following MVVM with a repository layer, from persistence to UI. Currently shipping to the App Store.</li>
+        <li>Designed bi-directional sync between SwiftData and Firestore, with offline queuing, retry logic, and per-record conflict resolution.</li>
+        <li>Integrated Sign in with Apple and Google Sign-In; rendered an interactive world map in MapKit from bundled GeoJSON country polygons.</li>
+        <li>Shipped a stats dashboard, achievement engine, photo memories grid, travel comparison, and map snapshot export.</li>
+      </ul>
+      <p class="exp-tags">SwiftUI · SwiftData · Firebase · MapKit · Combine · iOS 17.6+</p>
+    </div>
 
-      <!-- RCSoft -->
-      <div class="exp-item reveal rd1">
-        <div class="exp-head">
-          <div>
-            <div class="exp-role">Junior Software Developer Intern</div>
-            <div class="exp-where">RCSoft · Coimbra, Portugal</div>
-          </div>
-          <div class="exp-date">Jun – Jul 2025</div>
+    <div class="exp-item">
+      <div class="exp-head">
+        <div>
+          <p class="exp-role">Junior Software Developer Intern</p>
+          <p class="exp-where"><a href="https://www.rcsoft.pt/" target="_blank" rel="noopener">RCSoft</a> · Coimbra, Portugal</p>
         </div>
-        <ul class="exp-bullets">
-          <li>Built CRM modules in <strong>C# and WPF</strong> with DevExpress — data-dense screens used daily by business clients.</li>
-          <li>Integrated external REST APIs for data enrichment and implemented smart filtering on existing data models.</li>
-          <li>Shipped alongside a cross-functional team in a Portuguese-speaking environment — first professional international placement.</li>
-        </ul>
-        <div class="exp-tags">
-          <span class="etag">C#</span><span class="etag">WPF</span><span class="etag">DevExpress</span><span class="etag">REST APIs</span><span class="etag">SQL</span>
-        </div>
+        <p class="exp-date">Jun – Jul 2025</p>
       </div>
+      <ul class="exp-bullets">
+        <li>Built CRM modules in <strong>C# and WPF</strong> with DevExpress — data-dense screens used daily by business clients.</li>
+        <li>Integrated external REST APIs for data enrichment and implemented smart filtering on existing data models.</li>
+        <li>Worked with a cross-functional team in a Portuguese-speaking environment — my first international placement.</li>
+      </ul>
+      <p class="exp-tags">C# · WPF · DevExpress · REST APIs · SQL</p>
     </div>
   </div>
 </section>
 
-<hr class="rule" />
-
-<!-- ── STACK ──────────────────────────────── -->
+<!-- Stack -->
 <section id="stack" aria-labelledby="stack-h">
   <div class="container">
     <p class="sec-label">Stack</p>
     <h2 class="sec-heading" id="stack-h">Technical toolkit</h2>
 
-    <div class="stack-table reveal">
+    <div class="stack-table">
       <div class="stack-row">
-        <div class="stack-cat">iOS</div>
-        <div class="stack-items">
-          <span class="sitem core">Swift</span><span class="sitem core">SwiftUI</span>
-          <span class="sitem core">SwiftData</span><span class="sitem core">Combine</span>
-          <span class="sitem core">MapKit</span><span class="sitem">Firebase Auth</span>
-          <span class="sitem">Firestore</span><span class="sitem">Apple Sign-In</span>
-          <span class="sitem">CryptoKit</span><span class="sitem">Xcode</span>
-        </div>
+        <p class="stack-cat">iOS</p>
+        <p class="stack-items"><strong>Swift · SwiftUI · SwiftData · Combine · MapKit</strong> · Firebase Auth · Firestore · Sign in with Apple · CryptoKit · Xcode</p>
       </div>
       <div class="stack-row">
-        <div class="stack-cat">Architecture</div>
-        <div class="stack-items">
-          <span class="sitem core">MVVM</span><span class="sitem core">Repository Pattern</span>
-          <span class="sitem">Offline-first</span><span class="sitem">Bi-directional sync</span>
-        </div>
+        <p class="stack-cat">Architecture</p>
+        <p class="stack-items"><strong>MVVM · Repository pattern</strong> · Offline-first design · Bi-directional sync</p>
       </div>
       <div class="stack-row">
-        <div class="stack-cat">Languages</div>
-        <div class="stack-items">
-          <span class="sitem core">Swift</span><span class="sitem">Kotlin</span>
-          <span class="sitem">Java</span><span class="sitem">C#</span>
-          <span class="sitem">JavaScript</span><span class="sitem">SQL</span>
-        </div>
+        <p class="stack-cat">Languages</p>
+        <p class="stack-items"><strong>Swift</strong> · Kotlin · Java · C# · JavaScript · SQL</p>
       </div>
       <div class="stack-row">
-        <div class="stack-cat">Tools</div>
-        <div class="stack-items">
-          <span class="sitem">Git</span><span class="sitem">Firebase</span>
-          <span class="sitem">WPF</span><span class="sitem">DevExpress</span><span class="sitem">REST APIs</span>
-        </div>
+        <p class="stack-cat">Tools</p>
+        <p class="stack-items">Git · Firebase · WPF · DevExpress · REST APIs</p>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="rule" />
-
-<!-- ── MORE (education + beyond) ─────────── -->
+<!-- More -->
 <section id="more" aria-labelledby="more-h">
   <div class="container">
     <p class="sec-label">More</p>
     <h2 class="sec-heading" id="more-h">Beyond engineering</h2>
 
-    <div class="more-table reveal">
+    <div class="more-table">
       <div class="more-row">
-        <div class="more-key">Education</div>
-        <div class="more-val">
-          <strong>Bilkent University</strong> — B.S. Information Systems &amp; Technologies, Class of 2027
-          <span class="award-inline">🏆 Dean's List 2024</span>
-          <span class="award-inline">🎓 Merit Scholarship</span>
-        </div>
+        <p class="more-key">Education</p>
+        <p class="more-val"><strong>Bilkent University</strong> — B.S. Information Systems &amp; Technologies, Class of 2027. Dean's List 2024 · Merit Scholarship.</p>
       </div>
       <div class="more-row">
-        <div class="more-key">English</div>
-        <div class="more-val"><strong>IELTS Academic 7.0</strong></div>
+        <p class="more-key">Side project</p>
+        <p class="more-val"><strong>Bilkent Cookies</strong> — a campus cookie business I founded and run end-to-end: product, pricing, production, marketing, and delivery. 2024–present.</p>
       </div>
       <div class="more-row">
-        <div class="more-key">Side project</div>
-        <div class="more-val"><strong>Bilkent Cookies</strong> — campus cookie business I founded and run end-to-end: product, pricing, production, marketing, delivery. 2024–present.</div>
+        <p class="more-key">Volunteering</p>
+        <p class="more-val">Special needs children, Pakistan (AIESEC, 2024) · Farm stay, Denmark (Worldpackers, 2026).</p>
       </div>
       <div class="more-row">
-        <div class="more-key">Volunteering</div>
-        <div class="more-val">
-          <strong>Special needs children</strong>, Pakistan · AIESEC · 2024<br>
-          <strong>Farm stay</strong>, Denmark · Worldpackers · 2026
-        </div>
-      </div>
-      <div class="more-row">
-        <div class="more-key">Travel</div>
-        <div class="more-val">AIESEC professional placement, Portugal 2025 · independent travel throughout. I go to places that put me somewhere genuinely unfamiliar — it's made me effective in cross-cultural teams.</div>
+        <p class="more-key">Travel</p>
+        <p class="more-val">AIESEC professional placement in Portugal, 2025, and independent travel throughout. I go to places that put me somewhere genuinely unfamiliar — it's made me effective in cross-cultural teams.</p>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="rule" />
-
-<!-- ── CONTACT ────────────────────────────── -->
+<!-- Contact -->
 <section id="contact" aria-labelledby="contact-h">
   <div class="container">
     <p class="sec-label">Contact</p>
-    <h2 class="contact-heading" id="contact-h">Let's<br><span>talk.</span></h2>
-    <p style="font-size:15px;color:var(--text-2);max-width:480px;line-height:1.7;margin-bottom:32px;">
-      Open to <strong style="color:var(--text);font-weight:600;">part-time software development</strong> now alongside my studies.
-      Targeting full-time <strong style="color:var(--text);font-weight:600;">iOS engineering</strong> at high-craft product companies from 2027.
-      Happy to relocate to UK, EU, or UAE.
+    <h2 class="contact-heading" id="contact-h">Let's talk.</h2>
+    <p class="contact-sub">
+      Open to <strong>part-time software development</strong> now alongside my studies, and targeting
+      full-time <strong>iOS engineering</strong> at high-craft product companies from summer 2027.
+      Happy to relocate to the UK, EU, or UAE.
     </p>
 
-    <a href="mailto:selin.eren@ug.bilkent.edu.tr" class="contact-email">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      selin.eren@ug.bilkent.edu.tr
-    </a>
+    <a href="mailto:selin.eren@ug.bilkent.edu.tr" class="contact-email">selin.eren@ug.bilkent.edu.tr</a>
 
     <div class="contact-bottom">
       <div class="social-row">
-        <a href="https://github.com/selineren" class="social-btn" target="_blank" rel="noopener">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          GitHub
-        </a>
-        <a href="https://www.linkedin.com/in/selinren/" class="social-btn" target="_blank" rel="noopener">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
-        <a href="Selin_Eren_CV.pdf" class="social-btn" target="_blank" rel="noopener">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download CV
-        </a>
+        <a href="https://github.com/selineren" class="social-btn" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/selinren/" class="social-btn" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="Selin_Eren_CV.pdf" class="social-btn" target="_blank" rel="noopener">Download CV</a>
       </div>
-      <div class="reloc" aria-label="Open to relocation UK EU UAE">Open to relocation · 🇬🇧 UK · 🇪🇺 EU · 🇦🇪 UAE</div>
+      <p class="reloc">Open to relocation — UK · EU · UAE</p>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="container">
-    <div class="footer-inner">
-      <span class="f-copy">© 2026 Selin Eren</span>
-      <span class="f-note">Single file · No frameworks</span>
-    </div>
+    <p class="f-copy">© 2026 Selin Eren</p>
   </div>
 </footer>
 
@@ -842,16 +610,6 @@
   function closeMobile() {
     menu.classList.remove('open'); toggle.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
-  }
-
-  const rm  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const els = document.querySelectorAll('.reveal');
-  if (rm) { els.forEach(el => el.classList.add('visible')); }
-  else {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-    }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
-    els.forEach(el => obs.observe(el));
   }
 </script>
 </body>

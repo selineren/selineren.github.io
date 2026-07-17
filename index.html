@@ -430,6 +430,13 @@
       Firestore in the cloud. A sync service handles bi-directional updates with an offline queue,
       retry logic, and per-record conflict resolution.
     </p>
+    <p class="work-arch">
+      The sync engine is unit-tested with XCTest — 17 tests covering conflict resolution, photo
+      merging, and retry behavior, at 94% line coverage of the sync module and 100% on the pure
+      SyncResolver. A recent <a href="https://github.com/selineren/wandova/blob/main/docs/ARCHITECTURE.md" class="link" target="_blank" rel="noopener">architecture audit</a> surfaced
+      a manual objectWillChange "optimization" that was working against SwiftUI's own change
+      tracking; the test suite verified its removal was safe.
+    </p>
 
     <div class="work-features" role="list" aria-label="Key features">
       <span class="wf-chip" role="listitem">MapKit + GeoJSON polygons</span>
@@ -524,7 +531,7 @@
     <div class="stack-table">
       <div class="stack-row">
         <p class="stack-cat">iOS</p>
-        <p class="stack-items"><strong>Swift · SwiftUI · SwiftData · Combine · MapKit</strong> · Firebase Auth · Firestore · Sign in with Apple · CryptoKit · Xcode</p>
+        <p class="stack-items"><strong>Swift · SwiftUI · SwiftData · Combine · MapKit</strong> · Firebase Auth · Firestore · Sign in with Apple · CryptoKit · Xcode · XCTest</p>
       </div>
       <div class="stack-row">
         <p class="stack-cat">Architecture</p>
